@@ -33,13 +33,24 @@
                     or die("Error al extraer los registros");
         }
         if(!empty($ciudad) && !empty($tipo)){
-            echo "█ Ciudad: ".$ciudad." █ Tipo: ".$tipo." █ Rango de Precios: ".$precio."<br>";
+            // Asegúrate de que las variables están definidas antes de usarlas
+            $ciudad = isset($ciudad) ? htmlspecialchars($ciudad, ENT_QUOTES, 'UTF-8') : '';
+            $tipo = isset($tipo) ? htmlspecialchars($tipo, ENT_QUOTES, 'UTF-8') : '';
+            $precio = isset($precio) ? htmlspecialchars($precio, ENT_QUOTES, 'UTF-8') : '';
+            // Usa printf para un formato más limpio
+            printf("█ Ciudad: %s █ Tipo: %s █ Rango de Precios: %s<br>", $ciudad, $tipo, $precio);
+            //echo "█ Ciudad: ".$ciudad." █ Tipo: ".$tipo." █ Rango de Precios: ".$precio."<br>";
             $consultavista ="SELECT * FROM casas WHERE Ciudad = '$ciudad' AND Tipo = '$tipo' AND Precio > '$min' AND Precio < '$max' ORDER BY id ASC";
             $consulta = mysqli_query($conexion, $consultavista)
                     or die("Error al extraer los registros");
         }
         if(empty($ciudad) && empty($tipo)){
-            echo "█ Rango de Precios: ".$precio."<br>";
+            //echo "█ Rango de Precios: ".$precio."<br>";
+            // Asegúrate de que la variable está definida antes de usarla
+            $precio = isset($precio) ? htmlspecialchars($precio, ENT_QUOTES, 'UTF-8') : '';
+            
+            // Usa printf para un formato más limpio y claro
+            printf("█ Rango de Precios: %s<br>", $precio);
             $consultavista ="SELECT * FROM casas WHERE Precio > '$min' AND Precio < '$max' ORDER BY id ASC";
             $consulta = mysqli_query($conexion, $consultavista)
                     or die("Error al extraer los registros");
