@@ -19,7 +19,8 @@
        //echo "█ Ciudad: ".$ciudad." █ <<>> Tipo: ".$tipo." █ <<>> Rango de Precios: ".$precio."<br>";
 
        if(!empty($ciudad) && empty($tipo)){
-           echo "█ Ciudad: ".$ciudad." █ Rango de Precios: ".$precio."<br>";
+           //echo "█ Ciudad: ".$ciudad." █ Rango de Precios: ".$precio."<br>";
+           printf("█ Ciudad: %s █ Rango de Precios: %s<br>", htmlspecialchars($ciudad), htmlspecialchars($precio));
            $consultavista ="SELECT * FROM casas WHERE Ciudad = '$ciudad' AND Precio > '$min' AND Precio < '$max' ORDER BY id ASC";
             $consulta = mysqli_query($conexion, $consultavista)
                     or die("Error al extraer los registros");
