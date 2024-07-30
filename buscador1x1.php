@@ -26,7 +26,8 @@
                     or die("Error al extraer los registros");
         }
         if(empty($ciudad) && !empty($tipo)){
-            echo "█ Tipo: ".$tipo." █ Rango de Precios: ".$precio."<br>";
+            //echo "█ Tipo: ".$tipo." █ Rango de Precios: ".$precio."<br>";
+            printf("█ Tipo: %s █ Rango de Precios: %s<br>", htmlspecialchars($tipo), htmlspecialchars($tipo));
             $consultavista ="SELECT * FROM casas WHERE Tipo = '$tipo' AND Precio > '$min' AND Precio < '$max' ORDER BY id ASC";
             $consulta = mysqli_query($conexion, $consultavista)
                     or die("Error al extraer los registros");
